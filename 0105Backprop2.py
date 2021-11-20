@@ -25,10 +25,10 @@ model= nn.Linear(input_size, output_size)
 print(f'Prediction before training: f({X_test[0]}) = {model(X_test).item():.3f}')
 #print(f'Prediction before training: f(5) = {model(X_test).item():.3f}')
 
-learning_rate= 0.1
+learning_rate= 0.001
 optimizer= torch.optim.SGD(model.parameters(), lr= learning_rate)
 loss = nn.MSELoss()
-for epoch in range(10):
+for epoch in range(100):
     y_hat= model(X)
 
     l= loss(Y, y_hat)
@@ -39,6 +39,6 @@ for epoch in range(10):
 
     if epoch %10== 0:
         [w,b]= model.parameters()
-        print('epoch ', epoch+1, ': w = ', w[0][0].item(), ' loss = ', l)
+        print('epoch ', epoch+1, ': w = ', w[0][0].item(), ' loss = ', l.item())
 
 print(f'Prediction after training: f(5) = {model(X_test).item():.3f}')
